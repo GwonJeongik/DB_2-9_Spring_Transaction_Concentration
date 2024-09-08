@@ -1,4 +1,4 @@
-package hello.springtransaction.section10.propagation;
+package hello.springtransaction.section11.propagation;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
