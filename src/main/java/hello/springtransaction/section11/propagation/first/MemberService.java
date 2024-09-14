@@ -42,6 +42,7 @@ public class MemberService {
     /**
      * 회원가입 로그 저장 실패 -> 정상흐름 반환
      */
+    @Transactional
     public void joinV2(String username) {
         Member member = new Member(username);
         Log logMessage = new Log(username);
