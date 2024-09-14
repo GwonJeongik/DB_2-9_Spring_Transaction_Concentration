@@ -28,6 +28,7 @@ public class MemberServiceTest {
      * MemberService    @Transaction : ON -> 논리 트랜잭션 [신규 트랜잭션 => 물리 트랜잭션]
      * MemberRepository @Transaction : ON -> 논리 트랜잭션
      * LogRepository    @Transaction : ON -> 논리 트랜잭션
+     *
      */
     @Test
     void outer_transaction_on_success() {
