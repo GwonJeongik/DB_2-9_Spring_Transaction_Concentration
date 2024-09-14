@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * 트랜잭션 전파 활용1 - 예제 프로젝트 시작
+ * 1. 트랜잭션 전파 활용1 - 예제 프로젝트 시작
  */
 @SpringBootTest
 class MemberServiceTest {

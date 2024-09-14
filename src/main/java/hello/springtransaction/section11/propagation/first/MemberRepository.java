@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 /**
- * 트랜잭션 전파 활용1 - 예제 프로젝트 시작
+ * 1. 트랜잭션 전파 활용1 - 예제 프로젝트 시작
  * <p>
  * 비즈니스 요구사항
  * 회원을 등록하고 조회한다.
@@ -24,7 +24,7 @@ public class MemberRepository {
 
     private final EntityManager em;
 
-    @Transactional
+//    @Transactional
     public void save(Member member) {
         log.info("member 저장");
         em.persist(member);

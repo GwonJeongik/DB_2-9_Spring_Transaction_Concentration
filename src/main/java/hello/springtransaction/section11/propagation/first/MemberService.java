@@ -3,9 +3,10 @@ package hello.springtransaction.section11.propagation.first;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 트랜잭션 전파 활용1 - 예제 프로젝트 시작
+ * 1. 트랜잭션 전파 활용1 - 예제 프로젝트 시작
  * <p>
  * 비즈니스 요구사항
  * 회원을 등록하고 조회한다.
@@ -24,6 +25,7 @@ public class MemberService {
     /**
      * 회원가입 로그 저장 성공
      */
+    @Transactional
     public void joinV1(String username) {
         Member member = new Member(username);
         Log logMessage = new Log(username);

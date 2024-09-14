@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * 트랜잭션 전파 활용1 - 예제 프로젝트 시작
+ * 1. 트랜잭션 전파 활용1 - 예제 프로젝트 시작
  * <p>
  * 비즈니스 요구사항
  * 회원을 등록하고 조회한다.

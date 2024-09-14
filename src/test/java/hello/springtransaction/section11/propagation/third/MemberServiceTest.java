@@ -1,4 +1,4 @@
-package hello.springtransaction.section11.propagation.second;
+package hello.springtransaction.section11.propagation.third;
 
 import hello.springtransaction.section11.propagation.first.LogRepository;
 import hello.springtransaction.section11.propagation.first.MemberRepository;
@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * 2. 트랜잭션 전파 활용2 - 커밋, 롤백
+ * 3. 트랜잭션 전파 활용3 - 단일 트랜잭션
+ * 서비스 계층에만 트랜잭션을 적용
  */
 @SpringBootTest
 public class MemberServiceTest {
@@ -26,20 +26,20 @@ public class MemberServiceTest {
     LogRepository logRepository;
 
     /**
-     * MemberService    @Transaction : OFF
-     * MemberRepository @Transaction : ON
-     * LogRepository    @Transaction : ON -> Exception
+     * MemberService    @Transaction : ON
+     * MemberRepository @Transaction : OFF -> 트랜잭션 주석처리
+     * LogRepository    @Transaction : OFF -> 트랜잭션 주석처리
      */
     @Test
-    void outer_transaction_off_fail() {
+    void singleTransaction() {
         //given
-        String username = "로그 예외 outer_transaction_off_fail";
+        String username = "singleTransaction";
 
         //when
-        assertThatThrownBy(() -> memberService.joinV1(username));
+        memberService.joinV1(username);
 
         //then
         assertTrue(memberRepository.find(username).isPresent());
-        assertTrue(logRepository.find(username).isEmpty());
+        assertTrue(logRepository.find(username).isPresent());
     }
 }
