@@ -8,6 +8,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * 7. 트랜잭션 전파 활용7 - 복구 REQUIRES_NEW
+ * MemberFacade -> MemberService2 -> MemberRepository2
+ * MemberFacade -> LogRepository2
+ * <p>
+ * REQUIRES_NEW 사용 시, 트랜잭션 2개 -> 커넥션 2개 사용 방지하는 방법중 하나로 `MemberFacade` 시도
  */
 @SpringBootTest
 class MemberFacadeTest {

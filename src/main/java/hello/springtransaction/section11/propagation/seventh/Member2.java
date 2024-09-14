@@ -8,13 +8,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * 1. 트랜잭션 전파 활용1 - 예제 프로젝트 시작
+ * 7. 트랜잭션 전파 활용7 - 복구 REQUIRES_NEW
+ * MemberFacade -> MemberService2 -> MemberRepository2
+ * MemberFacade -> LogRepository2
  * <p>
- * 비즈니스 요구사항
- * 회원을 등록하고 조회한다.
- * 회원에 대한 변경 이력을 추적할 수 있도록 회원 데이터가 변경될 때 변경 이력을 DB LOG 테이블에 남겨야 한
- * 다.
- * 여기서는 예제를 단순화 하기 위해 회원 등록시에만 DB LOG 테이블에 남긴다.
+ * REQUIRES_NEW 사용 시, 트랜잭션 2개 -> 커넥션 2개 사용 방지하는 방법중 하나로 `MemberFacade` 시도
  */
 @Entity
 @Getter
