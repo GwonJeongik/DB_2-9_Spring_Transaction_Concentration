@@ -33,12 +33,12 @@ public class MemberServiceTest {
     @Test
     void outer_transaction_off_fail() {
         //given
-        String username = "로그 예외 outer_transaction_off_fail";
+        String username = "로그 예외_outer_transaction_off_fail";
 
         //when
         assertThatThrownBy(() -> memberService.joinV1(username));
 
-        //then
+        //then : log 데이터는 롤백 된다.
         assertTrue(memberRepository.find(username).isPresent());
         assertTrue(logRepository.find(username).isEmpty());
     }
