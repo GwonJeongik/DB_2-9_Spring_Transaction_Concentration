@@ -40,7 +40,7 @@ public class MemberService {
     }
 
     /**
-     * 회원가입 로그 저장 실패
+     * 회원가입 로그 저장 실패 -> 정상흐름 반환
      */
     public void joinV2(String username) {
         Member member = new Member(username);
