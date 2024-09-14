@@ -1,4 +1,4 @@
-package hello.springtransaction.section11.propagation.first;
+package hello.springtransaction.section11.propagation.seventh;
 
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -22,23 +22,28 @@ import java.util.Optional;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class MemberRepository {
+public class LogRepository2 {
 
     private final EntityManager em;
 
     @Transactional
-    public void save(Member member) {
+    public void save(Log2 logMessage) {
         Session session = em.unwrap(Session.class);
         Connection conn = session.doReturningWork(connection -> connection);
         log.info("사용중인 커넥션={}", conn);
 
-        log.info("member 저장");
-        em.persist(member);
+        log.info("log2 저장");
+        em.persist(logMessage);
+
+        if (logMessage.getMessage().contains("로그 예외")) {
+            log.info("log 저장 시 예외 발생");
+            throw new RuntimeException("예외 발생");
+        }
     }
 
-    public Optional<Member> find(String username) {
-        return em.createQuery("select m from Member m where m.username=:username", Member.class)
-                .setParameter("username", username)
+    public Optional<Log2> find(String message) {
+        return em.createQuery("select l from Log2 l where l.message=:message", Log2.class)
+                .setParameter("message", message)
                 .getResultList().stream().findAny();
     }
 }

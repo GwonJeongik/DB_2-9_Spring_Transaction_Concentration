@@ -3,9 +3,12 @@ package hello.springtransaction.section11.propagation.first;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Connection;
 import java.util.Optional;
 
 /**
@@ -24,8 +27,12 @@ public class LogRepository {
 
     private final EntityManager em;
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void save(Log logMessage) {
+        Session session = em.unwrap(Session.class);
+        Connection conn = session.doReturningWork(connection -> connection);
+        log.info("사용중인 커넥션={}", conn);
+
         log.info("log 저장");
         em.persist(logMessage);
 
